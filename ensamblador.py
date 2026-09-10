@@ -8,10 +8,10 @@ Uso:
 import argparse
 import sys
 
-from interprete import ejecutar, ErrorEjecucion
+from interprete import ejecutar_lmc, ErrorEjecucion
 
 CON_OPERANDO = {"ADD": 1, "SUB": 2, "STA": 3, "CALL": 4, "LDA": 5, "BRA": 6, "BRZ": 7, "BRP": 8}
-SIN_OPERANDO = {"HLT": 0, "INP": 901, "OUT": 902, "RET": 903}
+SIN_OPERANDO = {"HLT": 0, "INP": 901, "OUT": 902, "RET": 999}
 MNEMONICOS = set(CON_OPERANDO) | set(SIN_OPERANDO) | {"DAT"}
 
 
@@ -129,7 +129,7 @@ def main(argv=None):
     if args.run:
         entradas = [v for v in args.input.split(",") if v.strip()]
         try:
-            for valor in ejecutar(memoria, entradas):
+            for valor in ejecutar_lmc(memoria, entradas):
                 print(valor)
         except ErrorEjecucion as e:
             print(f"Error de ejecucion: {e}", file=sys.stderr)

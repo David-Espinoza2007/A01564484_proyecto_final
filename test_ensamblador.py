@@ -1,6 +1,8 @@
 """Pruebas del ensamblador y del interprete. Correr con: python test_ensamblador.py"""
-from ensamblador import ensamblar, ErrorEnsamblador
-from interprete import ejecutar, ErrorEjecucion
+import os
+
+from ensamblador import ensamblar, formato, ErrorEnsamblador
+from interprete import ejecutar_lmc, ErrorEjecucion
 
 
 def fuente(nombre):
@@ -9,7 +11,7 @@ def fuente(nombre):
 
 
 def correr(nombre, entradas):
-    return ejecutar(ensamblar(fuente(nombre)), entradas)
+    return ejecutar_lmc(ensamblar(fuente(nombre)), entradas)
 
 
 def test_traduccion():
@@ -35,6 +37,21 @@ def test_ejecucion():
     assert correr("subrutina.asm", [5]) == [20]      # CALL/RET anidados
 
 
+def test_subrutinas():
+    # CALL sale como 4xx y RET como 999, los opcodes libres de la Sesion 5.
+    memoria = ensamblar(fuente("subrutina.asm"))
+    assert memoria[:14] == [901, 313, 406, 513, 902, 0, 409, 409, 999, 513, 113, 313, 999, 0], memoria[:14]
+
+
+def test_formato_compatible_con_sesion05():
+    # El ensamblado se puede releer con el cargador de la Sesion 5.
+    from interprete import cargar
+    memoria = ensamblar(fuente("diferencia.asm"))
+    open("salida_prueba.txt", "w").write(formato(memoria) + "\n")
+    assert cargar("salida_prueba.txt") == memoria
+    os.remove("salida_prueba.txt")
+
+
 def test_errores():
     def falla(texto):
         try:
@@ -51,7 +68,7 @@ def test_errores():
 
 def test_error_ejecucion():
     try:
-        ejecutar([903] + [0] * 99)          # RET sin CALL
+        ejecutar_lmc([999] + [0] * 99, [])          # RET sin CALL
     except ErrorEjecucion as e:
         assert "sin un CALL" in str(e)
     else:

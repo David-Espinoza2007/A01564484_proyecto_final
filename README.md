@@ -4,6 +4,10 @@ Proyecto final de TC1032. Traduce pseudo-ensamblador del Little Man Computer
 (mnemonicos + etiquetas) a codigo maquina de 3 digitos y lo ejecuta en un
 interprete LMC.
 
+El interprete es el de la Sesion 5 (`sesion05.py`), reusado, que ya traia la
+extension de subrutinas `CALL` (4xx) y `RET` (999) con pila. El ensamblador es
+nuevo y se conecta directo a el.
+
 Solo usa la libreria estandar de Python 3. No hay que instalar nada.
 
 ## Archivos
@@ -11,7 +15,7 @@ Solo usa la libreria estandar de Python 3. No hay que instalar nada.
 | Archivo | Que hace |
 |---|---|
 | `ensamblador.py` | Las dos pasadas, la tabla de simbolos y la linea de comandos |
-| `interprete.py` | Ejecuta las 100 casillas de memoria |
+| `interprete.py` | El interprete de la Sesion 5, reusado, que ejecuta las 100 casillas |
 | `test_ensamblador.py` | Pruebas automaticas de todo lo anterior |
 | `programas/*.asm` | Programas de prueba |
 | `REPORTE.md` | Decisiones de diseno y problemas encontrados |
@@ -38,6 +42,13 @@ python3 ensamblador.py programas/mayor.asm -o salida.txt
 
 Si se usa `--run` sin `--input`, el programa pide cada valor por teclado
 cuando encuentra un `INP`.
+
+Correr solo el interprete con un archivo ya ensamblado, igual que en la
+Sesion 5:
+
+```bash
+python3 interprete.py salida.txt
+```
 
 Correr las pruebas:
 
@@ -90,7 +101,7 @@ que el programa no usa quedan en `000`.
 | `BRP x` | 8xx | Salta a x si el acumulador no es negativo |
 | `INP` | 901 | Lee un valor y lo pone en el acumulador |
 | `OUT` | 902 | Imprime el acumulador |
-| `RET` | 903 | Regresa de la subrutina (extension opcional) |
+| `RET` | 999 | Regresa de la subrutina (extension opcional) |
 | `HLT` | 000 | Termina el programa |
 | `DAT n` | nnn | Reserva una casilla con el valor n (0 por omision) |
 
