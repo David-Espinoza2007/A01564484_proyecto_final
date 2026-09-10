@@ -1,0 +1,9 @@
+// suma.asm - suma de dos numeros
+// Lee dos valores y muestra su suma.
+        INP
+        STA N1
+        INP
+        ADD N1
+        OUT
+        HLT
+N1      DAT 000
