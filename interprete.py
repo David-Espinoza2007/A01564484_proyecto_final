@@ -1,16 +1,11 @@
 """Interprete del Little Man Computer (LMC).
 
-Es el interprete de la Sesion 5 (`sesion05.py`), reusado tal cual. Ya traia la
-extension de subrutinas del ejercicio 4: CALL (opcode 4xx) y RET (999) con una
-pila, que es lo que permite llamadas anidadas.
+Es el interprete de la Sesion 5.
 
-Lo unico que se le agrego para el proyecto son tres protecciones, marcadas con
-un comentario, para que un programa mal escrito de un mensaje claro en vez de
-un traceback: entradas agotadas, contador de programa fuera de memoria y ciclo
-infinito.
+Lo unico que se le agrego para el proyecto son tres comentarios,
+para que un programa mal escrito de un mensaje claro.
 """
 import sys
-
 
 class ErrorEjecucion(Exception):
     """Error detectado mientras corre el programa."""
