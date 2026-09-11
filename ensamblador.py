@@ -1,6 +1,5 @@
-"""Ensamblador de dos pasadas para el LMC.
-
-Uso: python3 ensamblador.py programa.asm
+"""
+Ensamblador de dos pasadas para el LMC.
 """
 import sys
 

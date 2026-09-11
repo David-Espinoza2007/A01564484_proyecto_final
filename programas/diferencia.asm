@@ -1,4 +1,4 @@
-// diferencia.asm - diferencia positiva entre dos numeros
+// diferencia positiva entre dos numeros
 // POS se usa en BRP POS antes de estar definida: obliga a las dos pasadas.
         INP
         STA A

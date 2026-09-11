@@ -1,5 +1,5 @@
-// mayor.asm - el mayor de dos numeros
-// Lee X y Y; si X-Y >= 0 muestra X, si no muestra Y.
+// el mayor de dos numeros
+// Lee X y Y, si X-Y >= 0 muestra X, si no muestra Y.
         INP
         STA X
         INP

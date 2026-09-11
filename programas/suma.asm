@@ -1,4 +1,4 @@
-// suma.asm - suma de dos numeros
+// suma de dos numeros
 // Lee dos valores y muestra su suma.
         INP
         STA N1
